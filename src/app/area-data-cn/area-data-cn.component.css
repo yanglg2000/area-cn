@@ -1,0 +1,11 @@
+.my-inline{
+  position: relative;
+  min-height: 1px;
+  float: left;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.row {
+  margin-right: -10px;
+  margin-left: -10px;
+}

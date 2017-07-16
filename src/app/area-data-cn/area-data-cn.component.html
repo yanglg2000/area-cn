@@ -1,0 +1,7 @@
+<div class="row">
+  <div class="my-inline" *ngFor="let n of lists; let i=index">
+    <select [(ngModel)]= "codes[i]" (change)="ChangeSel(i)">
+      <option *ngFor="let l of lists[i]" [value]="l.n">{{l.d}}</option>
+    </select>
+  </div>
+</div>

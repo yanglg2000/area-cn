@@ -1,3 +1,11 @@
-<h1>
-  {{title}}
-</h1>
+<div>
+  <h1>
+    {{title + ' ' + code}} 
+  </h1>
+  <h3>
+    {{areas[0] + ', ' + areas[1] + ', ' + areas[2]}}
+  </h3><br/>
+  <div>
+    <app-area-data-cn [(code)]="code" (areaChange)="OnAreaChg($event)"></app-area-data-cn>
+  </div>
+</div>
