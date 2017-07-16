@@ -5,7 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ![效果图](./area-cn-display.png)
 
 ## 故事
-最近业余学习 Angular，加入了两个 QQ 技术群。有位兄弟在群里最近一直吵吵着 省市区三级联动 的开发问题。我看他吵吵了差不多一个一个礼拜，还在吵吵。我就想，这个究竟有多难？刚好，我准备尝试下使用 github 看看，就花了半天时间，创建了这个项目。十几年的 C 开发经历之后，第一个开源项目居然是 TypeScript 项目，想想也是挺有意思的。
+最近业余学习 Angular，加入了两个 QQ 技术群。有位兄弟在群里最近一直吵吵着 省市区三级联动 的开发问题。我看他吵吵了差不多一个礼拜，还在吵吵。我就想，这个究竟有多难？刚好，我准备尝试下使用 github 看看，就花了半天时间，创建了这个项目。十几年的 C 开发经历之后，第一个开源项目居然是 TypeScript 项目，想想也是挺有意思的。
 
 ## Development server
 
