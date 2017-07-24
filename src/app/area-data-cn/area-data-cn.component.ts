@@ -8,15 +8,30 @@ import { AreaInfo, AreaItem, AreaItemFin } from './area-info'
 })
 export class AreaDataCnComponent implements OnInit {
   private areaInfo: AreaInfo;
-  private _code : string;
+  private _code : string = "110101";
+  private bInit: boolean = false;
+  private bSet: boolean = false;
   public lists: AreaItemFin[][];
   public codes: string[];
   public araes: string[];
 
-  @Input() code: string = "110101";
   @Output() codeChange: EventEmitter<string> = new EventEmitter<string>();
   @Output() areaChange: EventEmitter<string[]> = new EventEmitter<string[]>();
-  
+
+  @Input() 
+  public get code(): string{
+    return this._code;
+  }
+
+  public set code(newCode: string){
+    if (this._code != newCode){
+      this._code = newCode;
+      this.bSet = true;
+      this.SelCode();
+      this.bSet = false;
+    }
+  }
+
   constructor() { 
     this.areaInfo = new AreaInfo();
     this.lists = new Array<AreaItemFin[]>(3);
@@ -26,18 +41,16 @@ export class AreaDataCnComponent implements OnInit {
 
   ngOnInit() {
     this.ChangeSel(-1);
+    this.bInit = true;
     this.SelCode();
   }
 
   public SelCode(): void{
-    if ( this._code === this.code){
-      return;
-    }
-    let cn = Number(this.code);
+    if ( !this.bInit ) return;
+    let cn = Number(this._code);
     if ( (cn < 110000) || (cn > 999999)){
       return;
     }
-    this._code = this.code;
 
     if (cn % 1000 === 0){
       // 一级
@@ -67,9 +80,19 @@ export class AreaDataCnComponent implements OnInit {
     
     if (idx >= 2){
       let item = this.lists[2].find((v,i,a)=>v.n === this.codes[2]);
-      this.araes[2] = item.d;
-      this.codeChange.emit(this.codes[2]);
-      this.areaChange.emit(this.araes);
+      if (item){
+        this.araes[2] = item.d;
+        if (this.bInit && (this._code != this.araes[2])){
+          if (!this.bSet){
+            this._code = this.araes[2];
+            this.codeChange.emit(this.codes[2]);
+          }
+          this.areaChange.emit(this.araes);
+        }
+      }
+      else{
+        this.araes[2] = "";
+      }
       return;
     }
     else if (idx < 0){
@@ -78,7 +101,12 @@ export class AreaDataCnComponent implements OnInit {
     else{
       c = this.codes[idx];
       let item = this.lists[idx].find((v,i,a)=>v.n === c);
-      this.araes[idx] = item.d;
+      if (item){
+        this.araes[idx] = item.d;
+      }
+      else if ( this.lists[idx].length > 0 ){
+        this.araes[idx] = this.lists[idx][0].d;
+      }
     }
     let a = this.areaInfo.data.find((v,i,a)=>v.n === c);
     if (a && a.v){

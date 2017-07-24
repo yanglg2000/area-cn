@@ -5,7 +5,12 @@
   <h3>
     {{areas[0] + ', ' + areas[1] + ', ' + areas[2]}}
   </h3><br/>
+  <h5>
+    <label class="text-center">输入编码自动改变选择</label>
+    <input [(ngModel)]="inputCode" class="text-center" placeholder="请输入6位编码..." (keyup)="onKeyUp()"/>
+  </h5><br/>
   <div>
     <app-area-data-cn [(code)]="code" (areaChange)="OnAreaChg($event)"></app-area-data-cn>
   </div>
+  <br/>  
 </div>
