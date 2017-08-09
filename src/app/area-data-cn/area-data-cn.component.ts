@@ -52,21 +52,21 @@ export class AreaDataCnComponent implements OnInit {
       return;
     }
 
-    if (cn % 1000 === 0){
+    if (cn % 10000 === 0){
       // 一级
       this.codes[0] = String(cn);
       this.ChangeSel(0);
     }
     else if ( cn % 100 === 0){
       // 二级
-      this.codes[0] = String(cn-(cn%1000));
+      this.codes[0] = String(cn-(cn%10000));
       this.ChangeSel(0);
       this.codes[1] = String(cn);
       this.ChangeSel(1);
     }
     else {
       // 三级
-      this.codes[0] = String(cn-(cn%1000));
+      this.codes[0] = String(cn-(cn%10000));
       this.ChangeSel(0);
       this.codes[1] = String(cn-(cn%100));
       this.ChangeSel(1);
